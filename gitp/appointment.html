@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="appointment-page">
+    <header>
+        <h1>Schedule Your Appointment</h1>
+        <p>Fill out the form below to book your appointment with one of our specialists.</p>
+    </header>
+
+    <main class="appointment-form-container">
+        <div class="appointment-card">
+            <h2>Appointment Form</h2>
+            <form id="appointment-form" onsubmit="return validateForm()" class="appointment-form">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="date">Preferred Appointment Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="time">Preferred Time</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="doctor">Select Doctor</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="dr_smith">Dr. Smith - General Practitioner</option>
+                        <option value="dr_jones">Dr. Jones - Pediatrician</option>
+                        <option value="dr_brown">Dr. Brown - Cardiologist</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="symptoms">Brief Description of Symptoms</label>
+                    <textarea id="symptoms" name="symptoms" placeholder="Describe your symptoms" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hospital Care. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

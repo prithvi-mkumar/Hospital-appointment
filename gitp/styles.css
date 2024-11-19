@@ -1,0 +1,160 @@
+/* General Reset and Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #1172cd;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 4px solid #157baa;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+/* Main Form Container */
+.appointment-form-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Container */
+.appointment-card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.appointment-card h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #0066cc;
+    font-weight: 600;
+}
+
+/* Form Layout */
+.appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Row Styling (2 columns layout for name, email, date, time) */
+.form-row {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #2892a7;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background-color: #2da6ce;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    align-self: center;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 12px 25px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}

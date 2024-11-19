@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Appointment System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            position: absolute; /* Fix the logo to the top-left corner */
+            top: 20px;  /* Adjust the distance from the top */
+            left: 20px; /* Adjust the distance from the left */
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        .logo {
+            width: 50px; /* Adjust logo size */
+            height: auto;
+        }
+
+        /* Hero Section with Background Image */
+        .hero {
+            position: relative;
+            height: auto; /* Allow section to grow with content */
+            min-height: 100vh; /* Ensure it covers at least the full viewport */
+            background: url('https://cdn.create.vista.com/api/media/small/675804044/stock-photo-stethoscope-table-clinic-office-doctor-working-computer-background') no-repeat center center; /* Add background image */
+            background-size: cover; /* Make sure the image covers the full section */
+            background-attachment: fixed; /* Keep background fixed when scrolling */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Overlay for text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1; /* Place overlay above the image but below text */
+        }
+
+        .hero div {
+            z-index: 2; /* Ensure text is above the overlay */
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            animation: typing 3s steps(40) 1s 1 normal both;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #28a745;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeInText 2s ease-out 2s forwards;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        /* Sticky Navigation Bar */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header nav a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin: 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #28a745;
+        }
+
+        /* Health Services Section */
+        .health-services {
+            background-color: #66aef6;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 2s ease-out 0.5s forwards;
+        }
+
+        .health-services h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .services-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: white;
+            color: #333;
+            width: 280px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .service-item p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .faq h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .faq-item {
+            background-color: white;
+            color: #333;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .faq-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 50px 20px;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .testimonial {
+            background-color: white;
+            color: #333;
+            width: 300px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        footer .social-links a {
+            color: white;
+            margin: 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        footer .social-links a:hover {
+            color: #28a745;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-item {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .faq-container, .testimonial-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .faq-item, .testimonial {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Sticky Navigation -->
+    <header>
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <img src="data:image/jpeg;base64,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" alt="HospitalCare Logo" class="logo">
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#faq">FAQ</a>
+            <a href="#testimonials">Testimonials</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div>
+            <h1>Welcome to HospitalCare</h1>
+            <p>Your health is our priority. Discover the services we offer.</p>
+            <!-- Updated Link for Book Appointment Button -->
+            <a href="appointment.html" class="btn-primary">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Health Services Section -->
+    <section class="health-services" id="services">
+        <h2>Health Services We Offer</h2>
+        <div class="services-list">
+            <div class="service-item">
+                <h3>Cardiology</h3>
+                <p>Our cardiologists specialize in heart disease, diagnostics, and surgery.</p>
+            </div>
+            <div class="service-item">
+                <h3>Neurology</h3>
+                <p>Comprehensive care for neurological disorders like strokes, epilepsy, and more.</p>
+            </div>
+            <div class="service-item">
+                <h3>Orthopedics</h3>
+                <p>Expert treatment for musculoskeletal conditions, joint replacements, and injuries.</p>
+            </div>
+            <div class="service-item">
+                <h3>Dermatology</h3>
+                <p>Skin care for conditions like acne, eczema, psoriasis, and skin cancer treatments.</p>
+            </div>
+            <div class="service-item">
+                <h3>Pediatrics</h3>
+                <p>Expert care for children from newborns to teenagers.</p>
+            </div>
+            <div class="service-item">
+                <h3>Psychiatry</h3>
+                <p>Professional psychiatric care for mental health and emotional well-being.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3>How do I book an appointment?</h3>
+                <p>You can book an appointment online by filling out the form above. Select your preferred doctor and time.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What should I bring to my appointment?</h3>
+                <p>Please bring a valid ID and your medical history (if any). Your doctor will guide you through the process.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How long does a typical consultation last?</h3>
+                <p>Consultations typically last 30 to 45 minutes, depending on your needs and the doctor's specialty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Patients Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"The best medical care I've received. The staff is amazing, and the doctors are top-notch!"</p>
+                <div class="author">- Sarah J.</div>
+            </div>
+            <div class="testimonial">
+                <p>"Booking my appointment was easy, and the treatment was excellent. Highly recommend."</p>
+                <div class="author">- Michael T.</div>
+            </div>
+            <div class="testimonial">
+                <p>"A very professional and caring hospital. The doctors truly care about their patients."</p>
+                <div class="author">- Linda R.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 HospitalCare. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>
